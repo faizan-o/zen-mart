@@ -5,6 +5,7 @@ import { getSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
 import client from '../client';
 import LoadingProducts from '../../components/LoadingProducts'
+import Head from 'next/head'
 
 const WishlistPage = () => {
   
