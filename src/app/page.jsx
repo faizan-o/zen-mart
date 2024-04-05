@@ -7,7 +7,6 @@ import { Product } from '../components/export';
 import { useEffect, useState } from 'react';
 import client from './client'
 import LoadingProducts from '../components/LoadingProducts.jsx'
-import Head from 'next/head'; 
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -48,14 +47,6 @@ const Home = () => {
 
         return (
                 <div className='w-[90%] mx-auto mt-20'>
-                    <Head>
-                        <title>Zenmart Home Page</title>
-                        <meta property="og:title" content="Zenmart" />
-                        <meta property="og:description" content="The Best Website For Purchasing Best Products With Least Money." />
-                        <meta property="og:image" content="https://www.pngall.com/wp-content/uploads/2/Z-Letter-PNG-Photo.png" />
-                        <meta property="og:url" content="zenmart.vercel.app" />
-                        <meta property="og:type" content="website" />
-                    </Head>
                     <div className='flex justify-between'>
                         <div className='flex items-center space-x-4 ml-4'>
                             <div className='w-4 h-8 rounded-r-[4px] rounded-l-[2px] bg-[#DB4444]'/>
