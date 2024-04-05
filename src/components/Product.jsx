@@ -1,6 +1,6 @@
 "use client"
 
-import client from "@/app/client";
+import client from "../app/client";
 import { useNextSanityImage } from "next-sanity-image";
 import Image from "next/image";
 import Link from "next/link";
