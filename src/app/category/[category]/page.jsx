@@ -5,7 +5,7 @@ import client from "../../client";
 import { useNextSanityImage } from "next-sanity-image";
 import Link from "next/link";
 import Image from "next/image";
-import { Product } from "@/components/export";
+import { Product } from "../../../components/export";
 
 const CategoryPage = ({params}) => {
 
