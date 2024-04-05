@@ -8,28 +8,12 @@ import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
 import { getSession } from "next-auth/react";
 
-
-export function generateMetadata(){
-    return {
-        title: metaProduct.name,
-        description: metaProduct.description,
-        openGraph: {
-            images: [
-                metaProduct.image
-            ]
-        }
-    }
-}
-
-let metaProduct = {};
 const ProductDetailPage = ({params}) => {
 
     const [product, setProduct] = useState({});
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [quantity, setQuantity] = useState(1);
     const [user, setUser] = useState({})
-    metaProduct = product;
-
 
     useEffect(() => {
         const fetchProducts = async () => {
