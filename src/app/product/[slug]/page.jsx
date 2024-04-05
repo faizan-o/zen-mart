@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import client from "../../client";
 import { useNextSanityImage } from "next-sanity-image";
-import { Product } from "@/components/export";
+import { Product } from "../../../components/export";
 import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
 import { getSession } from "next-auth/react";

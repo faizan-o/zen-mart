@@ -1,6 +1,6 @@
 "use client"
 
-import { Product } from '@/components/export';
+import { Product } from '../../components/export';
 import { getSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
 import client from '../client';

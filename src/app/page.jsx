@@ -3,7 +3,7 @@
 import {HeroImage, Perfume, Delivery, Guarantee, Women, PS5, Service, Speaker} from '../../public/export'
 import Image from 'next/image';
 import Link from 'next/link';
-import { Product } from '@/components/export';
+import { Product } from '../components/export';
 import { useEffect, useState } from 'react';
 import client from './client'
 import LoadingProducts from '../components/LoadingProducts.jsx'
