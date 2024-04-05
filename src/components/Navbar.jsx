@@ -35,7 +35,7 @@ const Navbar = () => {
     )
 
     const handleLogout = async (e) => {
-        await signOut({callbackUrl: 'zen-mart.netlify.app'}); 
+        await signOut({callbackUrl: 'zenmart.vercel.app'}); 
         setIsLoggedIn(false);
     };
 
