@@ -6,6 +6,7 @@ import client from '../client';
 import imageUrlBuilder from '@sanity/image-url';
 import {  FaTrash } from 'react-icons/fa';
 import Link from 'next/link'
+import Image from 'next/image'
 
 const CartPage = () => {
 
@@ -101,7 +102,7 @@ const CartPage = () => {
                     <tr key={product.slug.current} className='text-center'>
                       <td className='flex justify-start space-x-4 items-center py-10'>
                         <div className='flex justify-center items-center'>
-                          <img className='w-10' src={getUrl(product.image)} alt={product.name} />
+                          <Image className='w-10' src={getUrl(product.image)} alt={product.name} />
                         </div>
                         <h1 className='hidden md:block'>{product.name}</h1>
                       </td>

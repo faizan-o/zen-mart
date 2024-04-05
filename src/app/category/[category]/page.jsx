@@ -7,9 +7,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { Product } from "../../../components/export";
 
-const CategoryPage = ({params}) => {
 
+export function generateMetadata(){
+    return {
+        title,
+        description
+    }
+}
+
+let title = ""
+let description = ""
+
+const CategoryPage = ({params}) => {
     const [products, setProducts] = useState([]);
+
+    title = `${params.category.toUpperCase()} - Find The Best Products.`
+    description = `${params.category.toUpperCase()} - Find The Best Products Related To The Category.`
 
     useEffect(() => {
         const fetchProducts = async () => {
