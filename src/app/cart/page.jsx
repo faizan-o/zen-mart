@@ -38,8 +38,8 @@ const CartPage = () => {
           const productName  = cartItems[i].slug;
           const product = await client.fetch(`*[_type == "product" && slug.current == "${productName}"]`);
           fetchedProducts.push(product[0]);
-          setProducts(fetchedProducts)
         }
+        setProducts(fetchedProducts)
       } catch (error) {
         console.error('Error fetching cart:', error);
       }
@@ -98,17 +98,18 @@ const CartPage = () => {
                   const price = product.price.replace('$', '');
                   const totalPrice = Number(quantity) * Number(price);
                   itemsPrices.push(totalPrice)
+                  const imageUrl = getUrl(product.image).width(200).url();
                   return(
                     <tr key={product.slug.current} className='text-center'>
                       <td className='flex justify-start space-x-4 items-center py-10'>
                         <div className='flex justify-center items-center'>
-                          <Image className='w-10' src={getUrl(product.image)} alt={product.name} />
+                        <Image alt={product.name} src={imageUrl} width={60} height={40}/>
                         </div>
                         <h1 className='hidden md:block'>{product.name}</h1>
                       </td>
                       <td>{product.price}</td>
                       <td>{quantity}</td>
-                      <td>{totalPrice}$</td>
+                      <td>{totalPrice}$</td> 
                       <td className='cursor-pointer' onClick={(e) => deleteProduct(product.slug.current)}>
                         <h1 className='flex justify-center items-center'>
                           <FaTrash />
@@ -133,7 +134,7 @@ const CartPage = () => {
           <h1 className='poppins-bold text-2xl'>Cart Total</h1>
           <div className='flex justify-between poppins-semibold text-gray-600 mt-6'>
             <h2>Subtotal:</h2>
-            <h2>{itemsPrices.reduce((accumulator, currentValue) => accumulator + currentValue, 0)}$</h2>
+            <h2>{Math.round(itemsPrices.reduce((accumulator, currentValue) => accumulator + currentValue, 0))}$</h2>
           </div>
           <div className='w-full h-[2px] bg-gray-400 rounded-full mt-1'/>
           <div className='flex justify-between poppins-semibold text-gray-600 mt-4'>
@@ -143,7 +144,7 @@ const CartPage = () => {
           <div className='w-full h-[2px] bg-gray-400 rounded-full mt-1'/>
           <div className='flex justify-between poppins-semibold text-gray-600 mt-4'>
             <h2>Grand Total:</h2>
-            <h2>{itemsPrices.reduce((accumulator, currentValue) => accumulator + currentValue, 0)+2}$</h2>
+            <h2>{Math.round(itemsPrices.reduce((accumulator, currentValue) => accumulator + currentValue, 0)+2)}$</h2>
           </div>
           <Link href='/checkout'>
             <button className='poppins-semibold text-white bg-[#DB4444] px-5 mb-2 py-1 rounded-md mx-auto mt-4'>Proceed To Checkout</button>

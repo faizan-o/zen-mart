@@ -7,6 +7,7 @@ import { Product } from "../../../components/export";
 import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
 import { getSession } from "next-auth/react";
+import LoadingProducts from "../../../components/LoadingProducts";
 
 const ProductDetailPage = ({params}) => {
 
@@ -173,23 +174,28 @@ const ProductDetailPage = ({params}) => {
     
     return (
     <div className="mt-8">
-        <div className='w-[90%] mx-auto'>
+        <div className='w-full px-2 md:px-0 md:w-[90%] mx-auto'>
             <div className="flex items-center space-x-5 text-[12px]">
                 <span className="poppins-semibold text-gray-400">Products</span>
                 <div className="w-4 h-[2px] -rotate-45 bg-gray-400"/>
                 <span className="poppins-semibold text-gray-500">{product.category?.name ? product.category.name : "Category"}</span>
                 <div className="w-4 h-[2px] -rotate-45 bg-gray-500"/>
-                <span className="poppins-semibold text-black">{product.name}</span>
+                <span className="poppins-semibold text-black w-fit">{product.name}</span>
             </div>
             <div className="flex flex-col items-center mt-8 md:flex-row justify-around">
-                <Image {...mainProductImageProps} alt={`${product.name} Image`}/>
+                {product.image ? <Image {...mainProductImageProps} alt={`${product.name} Image`}/> : <div className="bg-blue-400 rounded-md animate-pulse"/>}
                 <div className="flex flex-col justify-between">
                     <div className="flex flex-col md:flex-row items-center space-x-3">
-                        <h1 className="poppins-bold text-3xl text-center">{product.name}</h1>
+                        <h1 className="poppins-bold text-3xl text-center">{product.name ? product.name : <div className="h-5 rounded-md w-40 bg-blue-400 animate-pulse" />}</h1>
                         <h2 className="text-green-700 poppins-bold ">( In Stock )</h2>
                     </div>
-                    <h2 className="text-[#DB4444] poppins-bold text-[20px] mt-3">{product.price}</h2>
-                    <p className="text-gray-600 poppins-regular text-[14px] w-[95%] mt-2">{product.description}</p>
+                    <h2 className="text-[#DB4444] poppins-bold text-[20px] mt-3">{product.price ? product.price : <div className="h-5 rounded-md w-40 bg-pink-400 animate-pulse" />}</h2>
+                    {product.description ? (<p className="text-gray-600 poppins-regular text-[14px] w-[95%] mt-2">{product.description}</p>) : (
+                        <div>
+                            <div className="h-5 rounded-md w-60 bg-blue-400 animate-pulse mt-2" />
+                            <div className="h-5 rounded-md w-60 bg-blue-400 animate-pulse mt-2" />
+                        </div>
+                    )}
                     <div className="h-1 w-full rounded-lg mt-2 bg-slate-300"/>
                     <div className="flex  space-x-4 items-center mt-5">
                         <div className="flex">
@@ -214,7 +220,9 @@ const ProductDetailPage = ({params}) => {
                     </div>
                 </div>
             </div>
-            <Section products={relatedProducts} />
+            {relatedProducts.length > 0 ? <Section products={relatedProducts} /> :( <div className='mt-5'>
+                <LoadingProducts />
+              </div>)}
         </div>
     </div>
   )
