@@ -66,8 +66,33 @@ const CheckOutPage = () => {
       });
   
       if (res.ok) {
-        
-      } else {
+        const fetched_user = await client.fetch(`*[_type == "user" && name == "${user.name}"] {
+          _id,
+          name,
+          email,
+          password,
+          cartItems,
+          wishlistItems
+        }`);
+
+        const relevantuser = fetched_user[0];
+        const wishlist = relevantuser.wishlistItems || [];
+
+            const updatedUser = {
+                ...relevantuser,
+                cartItems: [],
+                wishlistItems: wishlist,
+            };
+
+            await client
+                .patch(relevantuser._id)
+                .set(updatedUser)
+                .commit();
+
+
+        window.location.href = '/'
+      }
+     else {
         setError({ isError: true, errorMessage: "Something Went Wrong" });
         setTimeout(() => setError({ isError: false, errorMessage: "" }), 2000);
       }
@@ -182,7 +207,7 @@ const CheckOutPage = () => {
               <div>
                 <div className="flex justify-between mt-2 poppins-medium">
                   <h1>Subtotal:</h1>
-                  <h1>{totalItemsPrices.reduce((accumulator, currentValue) => accumulator + currentValue, 0)}$</h1>
+                  <h1>{Math.Round(totalItemsPrices.reduce((accumulator, currentValue) => accumulator + currentValue, 0))}$</h1>
                 </div>
                 <div className="h-[2px] rounded-md w-full bg-gray-950 mt-1"/>
                 <div className="flex justify-between mt-2 poppins-medium">
@@ -192,7 +217,7 @@ const CheckOutPage = () => {
                 <div className="h-[2px] rounded-md w-full bg-gray-950 mt-1"/>
                 <div className="flex justify-between mt-2 poppins-medium">
                   <h1>Total Bill:</h1>
-                  <h1>{totalItemsPrices.reduce((accumulator, currentValue) => accumulator + currentValue, 0)+2}$</h1>
+                  <h1>{Math.Round(totalItemsPrices.reduce((accumulator, currentValue) => accumulator + currentValue, 0))+2}$</h1>
                 </div>
                 <div className="h-[2px] rounded-md w-full bg-gray-950 mt-1"/>
                 <h1 className="poppins-semibold mt-2">Note: Cash On Delivey.</h1>
