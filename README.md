@@ -1,5 +1,5 @@
-# ZenMart! &nbsp;
-[ZenMart Logo](https://zenmart.vercel.app/favicon.ico)
+# ZenMart &nbsp;
+![ZenMart Logo](https://zenmart.vercel.app/favicon.ico)
 
 ## Overview
 
